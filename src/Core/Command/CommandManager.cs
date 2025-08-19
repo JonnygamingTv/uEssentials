@@ -83,7 +83,10 @@ namespace Essentials.Core.Command {
 
             ApplyCommandOptions(command);
 
-            _rocketCommands.Add(new RocketCommandManager.RegisteredRocketCommand(name, new CommandAdapter(command)));
+            RocketCommandManager.RegisteredRocketCommand cmd = new RocketCommandManager.RegisteredRocketCommand(name, new CommandAdapter(command));
+            R.Commands.Register(cmd);
+
+            _rocketCommands.Add(cmd);
             CommandMap.Add(name, command);
 
             Debug.WriteLine($"Registered '{command}'", "CommandManager");
@@ -205,6 +208,7 @@ namespace Essentials.Core.Command {
                     _onUnregisteredMethod?.Invoke(command, ReflectUtil.EMPTY_ARGS);
                 }
                 CommandMap.Remove(command.Name.ToLowerInvariant());
+                R.Commands.DeRegisterCommand(cmd);
                 return true;
             });
         }
