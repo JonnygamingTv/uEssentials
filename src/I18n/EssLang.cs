@@ -258,7 +258,9 @@ namespace Essentials.I18n {
                 else
                 {
                     ChatManager.serverSendMessage(message.ToString(), color, null, target.ToPlayer().SteamPlayer, EChatMode.SAY);
+#if DEBUG
                     Rocket.Core.Logging.Logger.Log(message.ToString());
+#endif
                 }
                 
             }
@@ -336,7 +338,7 @@ namespace Essentials.I18n {
                 BetterBroadcast(message, null, color);
             }
         }
-        #endregion
+#endregion
         private static Stream GetDefaultStream(string locale) {
             var path = $"Essentials.default.lang_{locale}.json";
             return Assembly.GetExecutingAssembly().GetManifestResourceStream(path);
