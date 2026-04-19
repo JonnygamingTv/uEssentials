@@ -6,6 +6,7 @@
 
 [![Join in our discord](https://discordapp.com/api/guilds/869187450159923221/widget.png)](https://discord.gg/wWtjUcvXQp)
 [![Download latest release here](https://img.shields.io/badge/download-latest_release-brightgreen.svg?maxAge=2592000)](https://github.com/TH3AL3X/uEssentials/releases/)
+[![Build and Release](https://github.com/TH3AL3X/uEssentials/actions/workflows/dotnet-desktop.yml/badge.svg?branch=dev)](https://github.com/TH3AL3X/uEssentials/actions/workflows/dotnet-desktop.yml)
 
 # Real uEssentials
 https://github.com/uEssentials/uEssentials
@@ -38,5 +39,5 @@ https://github.com/uEssentials/uEssentials
 If you have any questions or suggestions, feel free to send them to us [here](https://github.com/TH3AL3X/uEssentials/issues).
 
 ## License
-Copyright (C) 2015-2025 terror and contributors.
+Copyright (C) 2015-2026 terror and contributors.
 Licensed under the GPL v2 License. See LICENSE file in the project root for full license information.
