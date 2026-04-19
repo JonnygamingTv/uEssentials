@@ -82,7 +82,7 @@ namespace Essentials.Commands
             else if (args[0].Equals("*"))
             {
                 UServer.Players.ForEach(p => {
-                    ChatManager.instance.askChat(p.CSteamId, (byte)EChatMode.GLOBAL, args.Join(1));
+                    Rocket.Unturned.Chat.UnturnedChat.Say(p.RocketPlayer, args.Join(1));
                 });
 
                 name = "Everyone";
@@ -96,7 +96,7 @@ namespace Essentials.Commands
 
                 var targetPlayer = args[0].ToPlayer;
 
-                ChatManager.instance.askChat(targetPlayer.CSteamId, (byte)EChatMode.GLOBAL, args.Join(1));
+                Rocket.Unturned.Chat.UnturnedChat.Say(targetPlayer.RocketPlayer, args.Join(1));
 
                 name = targetPlayer.CharacterName;
             }
