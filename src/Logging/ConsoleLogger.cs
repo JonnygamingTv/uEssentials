@@ -60,12 +60,16 @@ namespace Essentials.Logging {
 
         public void Log(string message, ConsoleColor color, string prefix = "default",
                         string suffix = "default", bool parseColors = false) {
+            Rocket.Core.Logging.Logger.Log(message, color);
+            return;
             if (prefix == "default") {
                 prefix = Prefix;
             }
             if (suffix == "default") {
                 suffix = System.Environment.NewLine;
             }
+
+            
             
             var lastColor = Console.ForegroundColor;
             Console.ForegroundColor = color;
