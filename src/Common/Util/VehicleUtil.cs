@@ -26,7 +26,6 @@ using System.Globalization;
 using System.Linq;
 using Essentials.Api.Module;
 using static Essentials.Api.UEssentials;
-using SDG.Unturned;
 using Essentials.Api.Command;
 using Essentials.Api;
 using Essentials.I18n;
@@ -43,19 +42,22 @@ namespace Essentials.Common.Util {
             }
             else
             {
-                ushort? idToString = 0;
+                Asset asset = null;
 
-                Asset[] assets = Assets.find(EAssetType.VEHICLE);
+                // Updated obsolete list-fetch:
+                System.Collections.Generic.List<VehicleAsset> assets = new System.Collections.Generic.List<VehicleAsset>();
+                Assets.find(assets);
+
                 foreach (Asset ia in assets)
                 {
                     if (ia != null && ia.FriendlyName != null && ia.FriendlyName.ToLower().Contains(name.ToString()))
                     {
-                        idToString = ia.id;
+                        asset = ia; // we found the vehicle asset here
                         break;
                     }
                 }
 
-                return Assets.find(EAssetType.VEHICLE, idToString.Value);
+                return asset;
             }
         }
 
