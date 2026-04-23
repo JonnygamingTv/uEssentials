@@ -81,8 +81,9 @@ namespace Essentials.Commands
             }
             else if (args[0].Equals("*"))
             {
+                string txt = args.Join(1);
                 UServer.Players.ForEach(p => {
-                    Rocket.Unturned.Chat.UnturnedChat.Say(p.RocketPlayer, args.Join(1));
+                    ChatManager.instance.askChat(p.CSteamId, (byte)EChatMode.GLOBAL, txt);
                 });
 
                 name = "Everyone";
@@ -96,7 +97,7 @@ namespace Essentials.Commands
 
                 var targetPlayer = args[0].ToPlayer;
 
-                Rocket.Unturned.Chat.UnturnedChat.Say(targetPlayer.RocketPlayer, args.Join(1));
+                ChatManager.instance.askChat(targetPlayer.CSteamId, (byte)EChatMode.GLOBAL, args.Join(1)); // currently no easy alternative to .askChat
 
                 name = targetPlayer.CharacterName;
             }
