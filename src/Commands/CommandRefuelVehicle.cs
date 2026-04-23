@@ -72,7 +72,7 @@ namespace Essentials.Commands {
         }
 
         private void RefuelVehicle(InteractableVehicle veh) {
-            VehicleManager.sendVehicleFuel(veh, veh.asset.fuel);
+            veh.tellFuel(veh.asset.fuel);
         }
 
     }
