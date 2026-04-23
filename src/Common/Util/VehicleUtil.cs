@@ -33,7 +33,7 @@ using Essentials.I18n;
 namespace Essentials.Common.Util {
 
     public static class VehicleUtil {
-
+        private static readonly System.Collections.Generic.List<VehicleAsset> assets = new System.Collections.Generic.List<VehicleAsset>(); // avoid heavy re-allocation per usage
         public static Asset GetVehicle(string name)
         {
             if (ushort.TryParse(name, out var id))
@@ -42,25 +42,23 @@ namespace Essentials.Common.Util {
             }
             else
             {
-                Asset asset = null;
-
                 // Updated obsolete list-fetch:
-                System.Collections.Generic.List<VehicleAsset> assets = new System.Collections.Generic.List<VehicleAsset>();
-                Assets.find(assets);
+                if(assets.Count == 0) // only populate list once
+                    Assets.find(assets); // assets normally do not update at runtime, except during server start (i.e. after downloading workshop)
 
-                foreach (Asset ia in assets)
+                for (int i = 0; i < assets.Count; i++) // faster than foreach (especially until dotnet 10)
                 {
-                    if (ia != null && ia.FriendlyName != null && ia.FriendlyName.ToLower().Contains(name.ToString()))
-                    {
-                        asset = ia; // we found the vehicle asset here
-                        break;
-                    }
+                    var ia = assets[i];
+                    if (ia?.FriendlyName == null)
+                        continue;
+
+                    if (ia.FriendlyName.IndexOf(name, System.StringComparison.OrdinalIgnoreCase) >= 0) // avoid .ToLower() which allocates each iteration
+                        return ia; // found the Vehicle Asset here
                 }
 
-                return asset;
+                return null;
             }
         }
-
     }
 
 }
