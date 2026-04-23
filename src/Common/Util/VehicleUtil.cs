@@ -33,7 +33,7 @@ using Essentials.I18n;
 namespace Essentials.Common.Util {
 
     public static class VehicleUtil {
-        private static readonly System.Collections.Generic.List<VehicleAsset> assets = new System.Collections.Generic.List<VehicleAsset>(); // avoid heavy re-allocation per usage
+        private static readonly System.Collections.Generic.List<VehicleAsset> assets = new System.Collections.Generic.List<VehicleAsset>(); // avoid re-allocation per usage
         public static Asset GetVehicle(string name)
         {
             if (ushort.TryParse(name, out var id))
@@ -53,7 +53,7 @@ namespace Essentials.Common.Util {
                         continue;
 
                     if (ia.FriendlyName.IndexOf(name, System.StringComparison.OrdinalIgnoreCase) >= 0) // avoid .ToLower() which allocates each iteration
-                        return ia; // found the Vehicle Asset here
+                        return ia; // found the VehicleAsset here
                 }
 
                 return null;
