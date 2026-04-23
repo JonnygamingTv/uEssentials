@@ -66,8 +66,6 @@ namespace Essentials.Logging {
             if (suffix == "default") {
                 suffix = System.Environment.NewLine;
             }
-
-            
             
             var lastColor = Console.ForegroundColor;
             Console.ForegroundColor = color;
