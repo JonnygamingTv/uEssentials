@@ -61,7 +61,7 @@ namespace Essentials.Common.Util {
             int bestPriority = 0;
             ItemAsset bestAssetMatch = null;
 
-            for (int i = 0; i < _cachedAssets.Count; i++) // faster than foreach (atleast until dotnet 10)
+            for (int i = 0; i < _cachedAssets.Count; i++) // faster than foreach (esp. until dotnet 10)
             {
                 var asset = _cachedAssets[i];
                 var itemName = asset.itemName;
