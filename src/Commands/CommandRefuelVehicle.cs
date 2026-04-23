@@ -72,7 +72,8 @@ namespace Essentials.Commands {
         }
 
         private void RefuelVehicle(InteractableVehicle veh) {
-            veh.tellFuel(veh.asset.fuel);
+            veh.tellFuel(veh.asset.fuel); // Actually refuels
+            VehicleManager.sendVehicleFuel(veh, veh.asset.fuel); // Sends update to player inside
         }
 
     }
